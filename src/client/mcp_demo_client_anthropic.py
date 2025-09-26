@@ -1,4 +1,5 @@
 import asyncio
+import os
 from dataclasses import dataclass, field
 from typing import Union, cast
 
@@ -10,14 +11,17 @@ from mcp.client.stdio import stdio_client
 
 load_dotenv()
 
-
-anthropic_client = anthropic.AsyncAnthropic()
+# Initialize Anthropics client
+API_KEY = os.getenv("ANTHROPIC_API_KEY")
+if not API_KEY:
+    raise ValueError("ANTHROPIC_API_KEY environment variable not set.")
+anthropic_client = anthropic.AsyncAnthropic(api_key=API_KEY)
 
 
 # Create server parameters for stdio connection
 server_params = StdioServerParameters(
     command="python",  # Executable
-    args=["./mcp_server.py"],  # Optional command line arguments
+    args=["../mcp_demo_server.py"],  # Optional command line arguments
     env=None,  # Optional environment variables
 )
 
@@ -26,7 +30,7 @@ server_params = StdioServerParameters(
 class Chat:
     messages: list[MessageParam] = field(default_factory=list)
 
-    system_prompt: str = """You are a master SQLite assistant. 
+    system_prompt: str = """You are a master SQLite assistant.
     Your job is to use the tools at your dispoal to execute SQL queries and provide the results to the user."""
 
     async def process_query(self, session: ClientSession, query: str) -> None:
@@ -62,9 +66,7 @@ class Chat:
                 result = await session.call_tool(tool_name, cast(dict, tool_args))
 
                 assistant_message_content.append(content)
-                self.messages.append(
-                    {"role": "assistant", "content": assistant_message_content}
-                )
+                self.messages.append({"role": "assistant", "content": assistant_message_content})
                 self.messages.append(
                     {
                         "role": "user",

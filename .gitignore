@@ -1,3 +1,11 @@
 # Ignore environment variables file
+*.egg-info
+.venv/
+build/
+dist/
 .env
 .venv
+**/*.pyc
+__pycache__/
+.idea/
+*.log
