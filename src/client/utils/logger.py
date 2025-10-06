@@ -17,20 +17,16 @@ class Logger:
         if self._initialized:
             return
 
-        # Configure loguru logger
         log_level = os.environ.get("LOG_LEVEL", "INFO")
 
-        # Remove default handlers
         loguru_logger.remove()
 
-        # Add custom handler with format
         loguru_logger.add(
             sys.stderr,
             format="<green>{time:YYYY-MM-DD HH:mm:ss}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>",
             level=log_level,
         )
 
-        # Also log to file
         loguru_logger.add(
             "logs/app.log",
             rotation="10 MB",

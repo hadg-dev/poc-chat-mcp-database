@@ -1,6 +1,6 @@
 import os
 
-from server.services.mcp_main_instance import MCPMainInstance
+from src.server.services.mcp_main_instance import MCPMainInstance
 from src.server.services.mcp_sqlite_instance import MCPSQLiteInstance
 from src.server.utils.logger import logger
 

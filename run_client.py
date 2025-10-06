@@ -1,4 +1,7 @@
-from src.client.app import main
+from src.client.mcp_client_cli import MCPClientCLI
+from src.client.utils.logger import logger
 
 if __name__ == "__main__":
-    main()
+    logger.info("Starting MCP client...")
+    app = MCPClientCLI()
+    app.run()
