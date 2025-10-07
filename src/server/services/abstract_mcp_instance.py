@@ -11,7 +11,9 @@ class AbstractMCPInstance:
         list_of_instances.append(self)
 
     def start_mcp_server(self):
-        self.mcp.run(transport="http", host="0.0.0.0", port=8080)
+        self.mcp.run(transport="stdio")
+        # self.mcp.run(transport="http", host="0.0.0.0", port=8080)
+
 
     def start_all(self):
         if not list_of_instances:
@@ -25,4 +27,5 @@ class AbstractMCPInstance:
         for instance in list_of_instances[1:]:
             sub_mcp = instance.mcp
             main_mcp.mount(sub_mcp, prefix=f"/{sub_mcp.name.replace(' ', '_').lower()}")
-        main_mcp.run(transport="http", host="0.0.0.0", port=8080)
+        main_mcp.run(transport="stdio")
+        # main_mcp.run(transport="http", host="0.0.0.0", port=8080)

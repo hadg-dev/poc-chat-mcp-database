@@ -2,7 +2,7 @@ import json
 from dataclasses import dataclass, field
 from typing import Any, Dict, List
 
-from test import LiteLLMProvider, mcp_tools_to_openai_format
+from src.client.business.llm_provider import LiteLLMProvider
 from mcp import ClientSession, StdioServerParameters, stdio_client
 
 from src.client.utils.logger import logger
@@ -33,7 +33,7 @@ class MCPChatClient:
             }
             for tool in response.tools
         ]
-        tools = mcp_tools_to_openai_format(available_tools)
+        tools = LiteLLMProvider.mcp_tools_to_openai_format(available_tools)
         
         # Construction des messages avec système + historique + requête
         current_messages = [

@@ -82,3 +82,15 @@ class LiteLLMProvider(ABC):
             "content": result
         }
 
+    @staticmethod
+    def mcp_tools_to_openai_format(mcp_tools: List[Dict[str, Any]]) -> List[Dict[str, Any]]:    
+        """Convertit les outils MCP au format OpenAI (compatible LiteLLM)"""    
+        return [
+            {   "type": "function",
+                "function": {
+                    "name": tool["name"],
+                    "description": tool.get("description", "") or "",
+                    "parameters": tool["input_schema"],
+                }        
+            } for tool in mcp_tools
+        ]
