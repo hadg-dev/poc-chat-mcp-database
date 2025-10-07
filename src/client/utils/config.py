@@ -32,7 +32,7 @@ class Config:
             raise Exception("LLM API key is required. Set ANTHROPIC_API_KEY, OPENAI_API_KEY, or MISTRAL_API_KEY in environment variables.")
         llm_max_tokens = int(os.getenv("LLM_MAX_TOKENS", "8000"))
         mcp_server_command = os.getenv("MCP_SERVER_COMMAND", "python")
-        mcp_server_script = os.getenv("MCP_SERVER_SCRIPT", "./mcp_demo_server.py")
+        mcp_server_script = os.getenv("MCP_SERVER_SCRIPT", "./src/server/mcp_server_cli.py")
         if not Path(mcp_server_script).is_file():
             raise Exception(f"MCP server script not found: {mcp_server_script}")
         return cls(

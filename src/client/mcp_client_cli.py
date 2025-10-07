@@ -17,7 +17,7 @@ class MCPClientCLI:
         
             server_params =  MCPChatClient.setup_stdio_server_params(
                 command="python",
-                script="./mcp_demo_server.py"
+                script="./src/server/mcp_server_cli.py"
             )
 
             llm_provider = LiteLLMProvider(
