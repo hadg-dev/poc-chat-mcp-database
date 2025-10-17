@@ -11,7 +11,7 @@ class MCPServerManagerCLI:
         db_path = os.path.join(os.path.dirname(__file__), "..", "..", "databases", "database.db")
 
         self.mcp_global = MCPMainInstance()
-        self.mcp_sqlite = MCPSQLiteInstance(db_path=db_path)
+        #self.mcp_sqlite = MCPSQLiteInstance(db_path=db_path)
 
     def run(self):
         """Initialize and run the MCP server application."""
@@ -21,14 +21,13 @@ class MCPServerManagerCLI:
         self.mcp_global.init_mcp()
 
         # The __init__ is already called, so we just need to call init_mcp
-        self.mcp_sqlite.init_mcp()
+        #self.mcp_sqlite.init_mcp()
 
         logger.info("MCP Global Instance Tools:", self.mcp_global.mcp.tools)
         logger.info("MCP SQLite Instance Tools:", self.mcp_sqlite.mcp.tools)
 
         # start mcp servers
-        self.mcp_global.start()
-        self.mcp_sqlite.start()
+        self.mcp_global.start_all()
 
         logger.info("MCP Server is running.")
 

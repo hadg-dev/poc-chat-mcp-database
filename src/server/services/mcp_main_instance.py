@@ -5,7 +5,7 @@ from src.server.services.abstract_mcp_instance import AbstractMCPInstance
 
 class MCPMainInstance(AbstractMCPInstance):
 
-    def init(self):
+    def __init__(self):
         self.mcp = FastMCP(
             name="MCP Global Demo",
             include_tags={"public", "api"},  # Only expose these tagged components

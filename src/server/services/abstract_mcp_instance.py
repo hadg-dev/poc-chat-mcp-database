@@ -1,5 +1,3 @@
-import asyncio
-
 from fastmcp import FastMCP
 
 list_of_instances = []

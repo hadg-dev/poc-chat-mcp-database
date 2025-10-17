@@ -6,7 +6,7 @@ from src.server.services.abstract_mcp_instance import AbstractMCPInstance
 
 class MCPSQLiteInstance(AbstractMCPInstance):
 
-    def init__(self, db_path: str):
+    def __init__(self, db_path: str):
         # check if db_path exists
         if not Path(db_path).exists():
             raise ValueError(f"Database path does not exist: {db_path}")
