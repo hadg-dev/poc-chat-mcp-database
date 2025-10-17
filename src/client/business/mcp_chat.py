@@ -1,5 +1,6 @@
 import json
 from dataclasses import dataclass, field
+import os
 from typing import Any, Dict, List
 
 from src.client.business.llm_provider import LiteLLMProvider
@@ -132,6 +133,8 @@ class MCPChatClient:
     @staticmethod
     def setup_stdio_server_params(command: str, script: str) -> StdioServerParameters:
         """Configures the MCP stdio server parameters"""
+        logger.info(f"Setting up MCP stdio server with command: {command} {script}")
+        logger.info(f"cwd : {os.getcwd()}")
         return StdioServerParameters(
             command=command,
             args=[script],
