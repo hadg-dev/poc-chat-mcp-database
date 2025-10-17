@@ -1,7 +1,7 @@
-from fastmcp import FastMCP
+
+from mcp.server.fastmcp import FastMCP
 
 list_of_instances = []
-
 
 class AbstractMCPInstance:
     def __init__(self, main_mcp: FastMCP):
@@ -9,6 +9,7 @@ class AbstractMCPInstance:
         list_of_instances.append(self)
 
     def start_mcp_server(self):
+        print(f'starting MCP server for instance: {self.mcp.name}')
         self.mcp.run(transport="stdio")
         # self.mcp.run(transport="http", host="0.0.0.0", port=8080)
 

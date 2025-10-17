@@ -24,7 +24,7 @@ class MCPServerManagerCLI:
         #self.mcp_sqlite.init_mcp()
 
         logger.info("MCP Global Instance Tools:", self.mcp_global.mcp.tools)
-        logger.info("MCP SQLite Instance Tools:", self.mcp_sqlite.mcp.tools)
+        #logger.info("MCP SQLite Instance Tools:", self.mcp_sqlite.mcp.tools)
 
         # start mcp servers
         self.mcp_global.start_all()

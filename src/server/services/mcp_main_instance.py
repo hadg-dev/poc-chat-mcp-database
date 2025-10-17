@@ -1,4 +1,5 @@
-from fastmcp import FastMCP
+
+from mcp.server.fastmcp import FastMCP
 
 from src.server.services.abstract_mcp_instance import AbstractMCPInstance
 
